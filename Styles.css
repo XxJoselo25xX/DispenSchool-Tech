@@ -1,0 +1,240 @@
+:root {
+    --primary: #00f2ff;
+    --secondary: #7000ff;
+    --dark: #050505;
+    --darker: #0f0f0f;
+    --gray: #a0a0a0;
+    --white: #ffffff;
+    --glass: rgba(255, 255, 255, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--dark);
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* --- Navigation --- */
+header {
+    padding: 1.5rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: 0.3s;
+    background: rgba(5, 5, 5, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--white);
+}
+
+.logo span { color: var(--primary); }
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--white);
+    font-size: 0.9rem;
+    transition: 0.3s;
+    opacity: 0.8;
+}
+
+.nav-links a:hover { opacity: 1; color: var(--primary); }
+
+/* --- Buttons --- */
+.btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.btn-neon {
+    background: var(--primary);
+    color: var(--dark);
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+}
+
+.btn-neon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(0, 242, 255, 0.6);
+}
+
+.btn-outline {
+    border: 1px solid var(--primary);
+    color: var(--primary);
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-top: 80px;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+}
+
+.badge {
+    background: var(--glass);
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: 1px solid var(--primary);
+    font-size: 0.8rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; }
+.subtitle { font-size: 1.2rem; color: var(--gray); margin-bottom: 2rem; }
+
+.hero-image img {
+    width: 100%;
+    border-radius: 20px;
+    filter: drop-shadow(0 0 50px rgba(0, 242, 255, 0.2));
+}
+
+/* --- Cards & Grid --- */
+.section-padding { padding: 80px 0; }
+.bg-darker { background: var(--darker); }
+.grid-2-col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: var(--glass);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: 0.4s;
+}
+
+.card:hover {
+    border-color: var(--primary);
+    transform: translateY(-10px);
+}
+
+.card i { font-size: 2.5rem; margin-bottom: 1.5rem; }
+.icon-blue { color: var(--primary); }
+.icon-green { color: #2ecc71; }
+
+/* --- Metrics --- */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    text-align: center;
+    gap: 2rem;
+}
+
+.metric-item h3 { font-size: 3rem; color: var(--primary); }
+
+/* --- Animations (Scroll Reveal) --- */
+.reveal-up { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+.reveal-up.active { opacity: 1; transform: translateY(0); }
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .hero-content { grid-template-columns: 1fr; text-align: center; }
+    .nav-links { display: none; }
+    h1 { font-size: 2.5rem; }
+}
+/* Asegura que el cuerpo siempre tenga texto claro */
+body {
+    background-color: var(--dark);
+    color: var(--white);
+}
+
+/* Forzar que los encabezados y párrafos sean visibles */
+h2, h3, p {
+    color: var(--white);
+}
+
+/* Ajuste para la sección "Nosotros" y otras con fondo normal */
+.section-padding {
+    padding: 80px 0;
+    background-color: var(--dark); /* Fondo casi negro */
+}
+
+/* Ajuste para secciones con fondo "Darker" (Problema, Solución, Impacto) */
+.bg-darker {
+    background-color: #0a0a0a !important; /* Un gris muy oscuro para dar contraste */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Estilo para las listas que agregamos (Misión, Problemas, etc.) */
+.startup-list {
+    list-style: none;
+    padding: 0;
+}
+
+.startup-list li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gray); /* Gris claro para que no brille tanto como el título */
+}
+
+.startup-list i {
+    color: var(--primary); /* Iconos en azul neón */
+    font-size: 1.1rem;
+}
+
+/* Asegurar que el texto dentro de las tarjetas sea visible */
+.card h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.card p {
+    color: var(--gray);
+}
+
+/* FAQ: Texto resaltado */
+#faq strong {
+    color: var(--primary);
+    display: block;
+    margin-bottom: 5px;
+}
