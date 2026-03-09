@@ -189,7 +189,7 @@
                 <h2>No vendemos dispensadores, creamos bienestar.</h2>
                 <p>Únete a las instituciones que ya están transformando la experiencia escolar.</p>
                 <div class="cta-group" style="justify-content: center; margin-top: 2rem;">
-                    <a href="mailto:contacto@dispenschool.tech" class="btn btn-neon large">Solicitar Propuesta Personalizada</a>
+                    <a href="#" class="btn btn-neon large" onclick="abrirCotizacion()">Solicitar Propuesta Personalizada</a>
                 </div>
             </div>
         </section>
@@ -214,7 +214,110 @@
             <p>&copy; 2023 DispenSchool Tech. Transformando la experiencia institucional.</p>
         </div>
     </footer>
+<!-- POPUP COTIZACION -->
+<div id="popupCotizacion" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; align-items:center; justify-content:center;">
+    
+<div style="background:#111; padding:30px; border-radius:10px; width:90%; max-width:600px; color:white; max-height:90vh; overflow:auto;">
 
+<h2>Solicitar Cotización</h2>
+
+<form action="https://formsubmit.co/l221080275@iztapalapa.tecnm.mx" method="POST">
+
+<!-- CONFIG FORM SUBMIT -->
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_subject" value="Nueva solicitud de cotización - DispenSchool Tech">
+
+<h3>Datos de contacto</h3>
+
+<input required name="Nombre" placeholder="Nombre completo" style="width:100%; padding:10px; margin:5px 0">
+
+<input required type="email" name="Correo" placeholder="Correo electrónico" style="width:100%; padding:10px; margin:5px 0">
+
+<input name="Telefono" placeholder="Teléfono" style="width:100%; padding:10px; margin:5px 0">
+
+<h3>Institución</h3>
+
+<input name="Institucion" placeholder="Nombre de la institución" style="width:100%; padding:10px; margin:5px 0">
+
+<select name="Tipo de institución" style="width:100%; padding:10px; margin:5px 0">
+<option>Universidad</option>
+<option>Preparatoria</option>
+<option>Secundaria</option>
+<option>Otro</option>
+</select>
+
+<input name="Cantidad dispensadores" placeholder="Cantidad de dispensadores" style="width:100%; padding:10px; margin:5px 0">
+
+<select name="Tipo dispensador" style="width:100%; padding:10px; margin:5px 0">
+<option>Toallas sanitarias</option>
+<option>Desodorante</option>
+<option>Combo</option>
+</select>
+
+<h3>Observaciones</h3>
+
+<textarea name="Observaciones" placeholder="Observaciones adicionales sobre la institución o el pedido" style="width:100%; padding:10px; margin:5px 0"></textarea>
+<p style="font-size:12px; margin-top:10px;">
+<a href="#" onclick="verTerminos()">Ver términos y condiciones</a>
+</p>
+
+<div id="terminosBox" style="display:none; font-size:11px; max-height:150px; overflow:auto; border:1px solid #333; padding:10px; margin-top:10px;">
+
+<strong>Términos y Condiciones</strong>
+
+El usuario acepta que la información enviada será utilizada únicamente para fines de contacto, cotización y seguimiento comercial por parte de DispenSchool Tech.
+
+DispenSchool Tech podrá utilizar los datos proporcionados para dar seguimiento a solicitudes, enviar información relacionada con los productos y mejorar la experiencia del usuario.
+
+Los datos personales serán tratados conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares.
+
+La empresa se compromete a proteger la información proporcionada mediante medidas de seguridad tecnológicas y administrativas.
+
+Al enviar este formulario el usuario declara que la información proporcionada es verídica y acepta los presentes términos y condiciones.
+
+</div>
+
+
+
+<label style="font-size:12px;">
+
+<input type="checkbox" required> Acepto términos y condiciones
+</label>
+
+<br><br>
+
+<button type="submit" style="padding:12px 20px; background:#00eaff; border:none; font-weight:bold;">Enviar solicitud</button>
+
+<button type="button" onclick="cerrarCotizacion()" style="padding:12px 20px; background:#333; color:white; border:none;">Cerrar</button>
+
+</form>
+
+</div>
+</div>
     <script src="script.js"></script>
+<script>
+
+function abrirCotizacion(){
+document.getElementById("popupCotizacion").style.display="flex";
+}
+
+function cerrarCotizacion(){
+document.getElementById("popupCotizacion").style.display="none";
+}
+
+</script>
+
+<script>
+function verTerminos(){
+const box = document.getElementById("terminosBox");
+
+if(box.style.display === "none"){
+box.style.display = "block";
+}else{
+box.style.display = "none";
+}
+}
+</script>
 </body>
 </html>
