@@ -149,10 +149,12 @@ El usuario acepta que la información enviada será utilizada únicamente para f
 function abrirModal(){document.getElementById('cotizacionModal').style.display='flex'}
 function cerrarModal(){document.getElementById('cotizacionModal').style.display='none'}
 
-document.querySelectorAll("a[href='#contacto']").forEach(btn=>{
+// Abrir modal solo cuando un botón tenga la clase 'cotizar-btn'
+document.querySelectorAll('.cotizar-btn').forEach(btn=>{
 btn.addEventListener('click',function(e){
 e.preventDefault();
 abrirModal();
+})
 })
 })
 
