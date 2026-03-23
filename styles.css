@@ -310,3 +310,75 @@ a:hover {
     color: #00ffff;
     text-shadow: 0 0 8px #00ffff;
 }
+
+/* BOTON FLOTANTE */
+#chatBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--primary);
+    color: var(--dark);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0,242,255,0.5);
+    z-index: 9999;
+}
+
+/* CHAT BOX */
+#chatBox {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 300px;
+    background: #111;
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 9999;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* HEADER */
+#chatHeader {
+    background: var(--primary);
+    color: var(--dark);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+/* BODY */
+#chatBody {
+    padding: 10px;
+    height: 200px;
+    overflow-y: auto;
+    font-size: 14px;
+}
+
+/* INPUT */
+#chatInput {
+    display: flex;
+}
+
+#chatInput input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+
+#chatInput button {
+    background: var(--primary);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
