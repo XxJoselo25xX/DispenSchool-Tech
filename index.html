@@ -31,7 +31,7 @@
                 </ul>
             </nav>
             <a href="#contacto" class="btn btn-primary small">Solicitar Demo</a>
-        </div>
+        </div
     </header>
 
     <main>
@@ -221,7 +221,7 @@
 
 <h2>Solicitar Cotización</h2>
 
-<form action="https://formsubmit.co/l221080275@iztapalapa.tecnm.mx" method="POST">
+<form id="formCotizacion">
 
 <!-- CONFIG FORM SUBMIT -->
 <input type="hidden" name="_captcha" value="false">
@@ -240,7 +240,7 @@
 
 <input name="Institucion" placeholder="Nombre de la institución" style="width:100%; padding:10px; margin:5px 0">
 
-<select name="Tipo de institución" style="width:100%; padding:10px; margin:5px 0">
+<select name="Tipo" style="width:100%; padding:10px; margin:5px 0">
 <option>Universidad</option>
 <option>Preparatoria</option>
 <option>Secundaria</option>
@@ -397,4 +397,35 @@ function enviarMensaje(){
 }
 </script>
 </body>
+
+    <script>
+document.getElementById("formCotizacion").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const data = {
+        Nombre: document.querySelector('[name="Nombre"]').value,
+        Correo: document.querySelector('[name="Correo"]').value,
+        Telefono: document.querySelector('[name="Telefono"]').value,
+        Institucion: document.querySelector('[name="Institucion"]').value,
+        Tipo: document.querySelector('[name="Tipo"]').value,
+        Cantidad: document.querySelector('[name="Cantidad dispensadores"]').value,
+        Dispensador: document.querySelector('[name="Tipo dispensador"]').value,
+        Observaciones: document.querySelector('[name="Observaciones"]').value
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycbwqSmoy6_cyLRvFuEGD3grb5DbEE9yj9bdxnVUvVptQlVi5umA81Nth7rvSV1Lcf2Esew/exec", {
+        method: "POST",
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(res => {
+        alert("Solicitud enviada correctamente 🚀");
+        document.getElementById("formCotizacion").reset();
+        cerrarCotizacion();
+    })
+    .catch(err => {
+        alert("Error al enviar, intenta de nuevo");
+    });
+});
+</script>
 </html>
