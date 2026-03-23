@@ -221,7 +221,7 @@
 
 <h2>Solicitar Cotización</h2>
 
-<form action="https://formsubmit.co/ladyy0110@gmail.com" method="POST">
+<form action="https://formsubmit.co/l221080275@iztapalapa.tecnm.mx" method="POST">
 
 <!-- CONFIG FORM SUBMIT -->
 <input type="hidden" name="_captcha" value="false">
@@ -276,6 +276,27 @@ La empresa se compromete a proteger la información proporcionada mediante medid
 
 Al enviar este formulario el usuario declara que la información proporcionada es verídica y acepta los presentes términos y condiciones.
 
+
+Al enviar este formulario, el usuario acepta que su solicitud de cotización representa una intención formal de contratación con DispenSchool Tech, sujeta a confirmación por parte de la empresa.
+
+</p>
+
+<p>
+La relación comercial se formaliza cuando la empresa confirma la solicitud mediante correo electrónico u otro medio de contacto proporcionado.
+</p>
+
+<p>
+Una vez aceptada la propuesta, los productos serán preparados y enviados en un plazo estimado de <strong>5 a 15 días hábiles</strong>, dependiendo de disponibilidad y ubicación de la institución. En caso de incluir instalación, esta será previamente coordinada.
+</p>
+
+<p>
+Si el producto presenta defectos de fabricación o daños al momento de la entrega, el cliente deberá notificarlo dentro de un plazo máximo de <strong>48 horas</strong>. La empresa se compromete a realizar la reposición o solución correspondiente sin costo adicional, siempre que no exista mal uso o manipulación indebida.
+</p>
+
+<p>
+Los datos proporcionados serán utilizados únicamente para fines de contacto, cotización y seguimiento comercial, conforme a la normativa vigente en materia de protección de datos.
+</p>
+
 </div>
 
 
@@ -295,6 +316,35 @@ Al enviar este formulario el usuario declara que la información proporcionada e
 
 </div>
 </div>
+
+
+<!-- BOTON SOPORTE -->
+<div id="chatBtn" onclick="abrirChat()">
+    <i class="fas fa-comments"></i>
+</div>
+
+<!-- CHAT BOX -->
+<div id="chatBox">
+    <div id="chatHeader">
+        <span>Atención al cliente</span>
+        <button onclick="cerrarChat()">✕</button>
+    </div>
+
+    <div id="chatBody">
+        <p>Hola 👋</p>
+        <p>¿En qué podemos ayudarte?</p>
+    </div>
+
+    <div id="chatInput">
+        <input type="text" id="mensaje" placeholder="Escribe tu mensaje...">
+        <button onclick="enviarMensaje()">Enviar</button>
+    </div>
+</div>
+
+
+
+
+
     <script src="script.js"></script>
 <script>
 
@@ -317,6 +367,33 @@ box.style.display = "block";
 }else{
 box.style.display = "none";
 }
+}
+</script>
+
+
+
+
+<script>
+function abrirChat(){
+    document.getElementById("chatBox").style.display = "flex";
+}
+
+function cerrarChat(){
+    document.getElementById("chatBox").style.display = "none";
+}
+
+function enviarMensaje(){
+    const input = document.getElementById("mensaje");
+    const chat = document.getElementById("chatBody");
+
+    if(input.value.trim() !== ""){
+        const nuevo = document.createElement("p");
+        nuevo.textContent = "Tú: " + input.value;
+        chat.appendChild(nuevo);
+
+        input.value = "";
+        chat.scrollTop = chat.scrollHeight;
+    }
 }
 </script>
 </body>
