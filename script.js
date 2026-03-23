@@ -1,13 +1,12 @@
 /**
- * DispenSchool Tech - Script de Funcionalidad Startup
+ * DispenSchool Tech - Script completo
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // --- 1. ANIMACIÓN DE APARICIÓN (SCROLL REVEAL) ---
-    // Detecta cuando los elementos entran en pantalla para animarlos
+
+    // --- 1. ANIMACIONES SCROLL ---
     const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-zoom');
-    
+
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -19,16 +18,15 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => revealObserver.observe(el));
 
 
-    // --- 2. CONTADORES ANIMADOS (KPIs) ---
-    // Hace que los números de la sección de impacto suban desde 0
+    // --- 2. CONTADORES ---
     const counters = document.querySelectorAll('.counter');
-    
+
     const countObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const target = parseInt(entry.target.getAttribute('data-target'));
-                animateValue(entry.target, 0, target, 2000); // 2 segundos de duración
-                countObserver.unobserve(entry.target); // Solo animar una vez
+                animateValue(entry.target, 0, target, 2000);
+                countObserver.unobserve(entry.target);
             }
         });
     }, { threshold: 0.5 });
@@ -41,18 +39,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!startTimestamp) startTimestamp = timestamp;
             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
             obj.innerHTML = Math.floor(progress * (end - start) + start);
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            }
+            if (progress < 1) window.requestAnimationFrame(step);
         };
         window.requestAnimationFrame(step);
     }
 
 
-    // --- 3. NAVBAR EFECTO GLASSMORFISMO ---
-    // Cambia el estilo del menú cuando el usuario hace scroll hacia abajo
+    // --- 3. NAVBAR DINÁMICO ---
     const navbar = document.getElementById('navbar');
-    
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             navbar.style.background = 'rgba(5, 5, 5, 0.95)';
@@ -66,33 +61,101 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // --- 4. SMOOTH SCROLL (NAVEGACIÓN SUAVE) ---
-    // Para que al hacer clic en un link, se mueva suavemente a la sección
+    // --- 4. SCROLL SUAVE ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                    behavior: 'smooth'
                 });
             }
         });
     });
 
-    // --- 5. MENÚ MÓVIL (HAMBURGUESA) ---
-    // (Asegúrate de tener un elemento con id "mobile-menu" y "nav-links" en tu HTML)
-    const mobileMenuBtn = document.getElementById('mobile-menu');
-    const navLinks = document.querySelector('.nav-links');
 
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            // Animación del icono
-            const icon = mobileMenuBtn.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
+    // --- 5. FORMULARIO A GOOGLE SHEETS ---
+    const form = document.getElementById("formCotizacion");
+
+    if (form) {
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const data = {
+                Nombre: document.querySelector('[name="Nombre"]').value,
+                Correo: document.querySelector('[name="Correo"]').value,
+                Telefono: document.querySelector('[name="Telefono"]').value,
+                Institucion: document.querySelector('[name="Institucion"]').value,
+                Tipo: document.querySelector('[name="Tipo"]').value,
+                Cantidad: document.querySelector('[name="Cantidad dispensadores"]').value,
+                Dispensador: document.querySelector('[name="Tipo dispensador"]').value,
+                Observaciones: document.querySelector('[name="Observaciones"]').value
+            };
+
+            fetch("https://script.google.com/macros/s/AKfycbwqSmoy6_cyLRvFuEGD3grb5DbEE9yj9bdxnVUvVptQlVi5umA81Nth7rvSV1Lcf2Esew/exec", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data),
+                mode: "no-cors"
+            })
+            .then(() => {
+                alert("Solicitud enviada correctamente 🚀");
+                form.reset();
+                cerrarCotizacion();
+            })
+            .catch(() => {
+                alert("Error al enviar");
+            });
         });
     }
+
 });
+
+
+// --- 6. POPUP COTIZACIÓN ---
+function abrirCotizacion() {
+    document.getElementById("popupCotizacion").style.display = "flex";
+}
+
+function cerrarCotizacion() {
+    document.getElementById("popupCotizacion").style.display = "none";
+}
+
+
+// --- 7. TÉRMINOS ---
+function verTerminos() {
+    const box = document.getElementById("terminosBox");
+
+    if (box.style.display === "none") {
+        box.style.display = "block";
+    } else {
+        box.style.display = "none";
+    }
+}
+
+
+// --- 8. CHAT ---
+function abrirChat() {
+    document.getElementById("chatBox").style.display = "flex";
+}
+
+function cerrarChat() {
+    document.getElementById("chatBox").style.display = "none";
+}
+
+function enviarMensaje() {
+    const input = document.getElementById("mensaje");
+    const chat = document.getElementById("chatBody");
+
+    if (input.value.trim() !== "") {
+        const nuevo = document.createElement("p");
+        nuevo.textContent = "Tú: " + input.value;
+        chat.appendChild(nuevo);
+
+        input.value = "";
+        chat.scrollTop = chat.scrollHeight;
+    }
+}
