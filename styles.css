@@ -382,3 +382,19 @@ a:hover {
     padding: 10px;
     cursor: pointer;
 }
+
+#acuerdo .card {
+    background: #181818;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    color: white;
+}
+
+#acuerdo ul {
+    margin-left: 20px;
+}
+
+#acuerdo h3 {
+    margin-bottom: 10px;
+}
